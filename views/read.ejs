@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mongoDB practice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/stylesheet/style.css" />
+  </head>
+  <body>
+    <div class="w-full min-h-screen bg-zinc-900 p-10 text-white">
+      <a class="text-blue-500 mt-3" href="/">Back to home</a>
+      <h1 class="text-3xl tracking-tighter mt-4">All Users</h1>
+      <br />
+      <hr />
+      <br />
+      <div class="users flex gap-3 flex-wrap">
+        <% if(users.length>0) {%>
+        <% users.forEach(function(user){ %>
+          <div class="user w-52 p-4 bg-zinc-800 rounded-lg">
+            <div class="w-full h-52 rounded-lg bg-zinc-500 overflow-hidden">
+              <img
+                class="w-full h-full object-cover"
+                src="<%= user.image %>"
+                alt="User image"
+              />
+            </div>
+            <h3 class="text-xl mt-3 tracking-tighter"><%= user.name %></h3>
+            <h5 class="text-zinc-500"><%= user.email %></h5>
+            <div class="flex gap-3 mt-10">
+              <a href="/edit/<%= user._id %>" class="text-zinc-600 hover:underline">Edit User</a>
+              <a href="/delete/<%= user._id %>" class="text-red-500 hover:underline">Delete User</a>
+            </div>
+          </div>
+        <% }) %>
+        <%} else{ %>
+           <h3 class="text-zinc-500">no users yet</h3>
+           <%}%>
+      </div>
+    </div>
+  </body>
+</html>
+
